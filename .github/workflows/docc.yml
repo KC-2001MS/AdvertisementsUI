@@ -20,6 +20,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: iOS
+        run: |
+          xcodebuild docbuild \
+            -scheme AdMobUI \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -derivedDataPath ./DerivedData
+
       - name: Build DocC for AdMobUI
         run: |
           swift package --allow-writing-to-directory ./docs \
@@ -29,6 +36,13 @@ jobs:
             --transform-for-static-hosting \
             --output-path ./docs/AdMobUI \
             --hosting-base-path AdMobUI
+
+      - name: iOS
+        run: |
+          xcodebuild docbuild \
+            -scheme AppLovinUI \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -derivedDataPath ./DerivedData
 
       - name: Build DocC for AppLovinUI
         run: |
