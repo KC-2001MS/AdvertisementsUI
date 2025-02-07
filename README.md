@@ -39,8 +39,11 @@ AdvertisementsUI comes with two different frameworks.
 Each framework has a different configuration method.
 
 ### AdMobUI
+
 It will be described in detail at a later date.
+
 ### AppLovinUI
+
 It will be described in detail at a later date.
 
 ## Contribution
