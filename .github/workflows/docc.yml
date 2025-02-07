@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
- 
+
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -20,16 +20,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build DocC
+      - name: Build DocC for AdMobUI
         run: |
           swift package --allow-writing-to-directory ./docs \
             generate-documentation \
-            --target AdvertisementsUI \
+            --target AdMobUI \
             --disable-indexing \
             --transform-for-static-hosting \
-            --output-path ./docs \
+            --output-path ./docs/AdMobUI \
+            --hosting-base-path AdMobUI
+
+      - name: Build DocC for AppLovinUI
+        run: |
+          swift package --allow-writing-to-directory ./docs \
+            generate-documentation \
+            --target AppLovinUI \
+            --disable-indexing \
             --transform-for-static-hosting \
-            --hosting-base-path AdvertisementsUI
+            --output-path ./docs/AppLovinUI \
+            --hosting-base-path AppLovinUI
+
+      - name: Copy index.html to root
+        run: cp ./docs/AdMobUI/index.html ./docs/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -42,9 +54,9 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    environment: 
+    environment:
       name: github-pages
-      url: "https://iroiro.dev/AdvertisementsUI/documentation/advertisementsui/"
+      url: "https://iroiro.dev/documentation/"
 
     steps:
       - name: Deploy to GitHub Pages
