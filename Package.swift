@@ -5,27 +5,26 @@ import PackageDescription
 
 let package = Package(
     name: "AdvertisementsUI",
+    defaultLocalization: LanguageTag(rawValue: "en"),
     platforms: [.iOS(.v17)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "AdMobAdsUI",
-            targets: ["AdMobAdsUI"]
+            name: "AdMobUI",
+            targets: ["AdMobUI"]
         ),
         .library(
-            name: "AppLovinAdsUI",
-            targets: ["AppLovinAdsUI"]
+            name: "AppLovinUI",
+            targets: ["AppLovinUI"]
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/googleads/swift-package-manager-google-mobile-ads.git", from: "11.13.0"),
+        .package(url: "https://github.com/googleads/swift-package-manager-google-mobile-ads.git", from: "12.0.0"),
         .package(url: "https://github.com/AppLovin/AppLovin-MAX-Swift-Package.git", from: "13.1.0"),
+        .package(url: "https://github.com/apple/swift-docc-plugin.git", from: "1.4.3"),
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "AdMobAdsUI",
+            name: "AdMobUI",
             dependencies: [
                 .product(
                     name: "GoogleMobileAds",
@@ -34,7 +33,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "AppLovinAdsUI",
+            name: "AppLovinUI",
             dependencies: [
                 .product(
                     name: "AppLovinSDK",
@@ -45,8 +44,8 @@ let package = Package(
         .testTarget(
             name: "AdUITests",
             dependencies: [
-                "AdMobAdsUI",
-                "AppLovinAdsUI"
+                "AdMobUI",
+                "AppLovinUI"
             ]
         ),
     ]

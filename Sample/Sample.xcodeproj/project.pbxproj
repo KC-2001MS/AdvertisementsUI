@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F7DC36E52D553C5600778036 /* AdMobAdsUI in Frameworks */ = {isa = PBXBuildFile; productRef = F7DC36E42D553C5600778036 /* AdMobAdsUI */; };
+		F7DC36EA2D55427C00778036 /* AdMobUI in Frameworks */ = {isa = PBXBuildFile; productRef = F7DC36E92D55427C00778036 /* AdMobUI */; };
+		F7DC36EC2D55427C00778036 /* AppLovinUI in Frameworks */ = {isa = PBXBuildFile; productRef = F7DC36EB2D55427C00778036 /* AppLovinUI */; };
 		F7FD49CC2D50FC8B00002117 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD49C52D50FC8B00002117 /* Preview Assets.xcassets */; };
 		F7FD49CD2D50FC8B00002117 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD49C72D50FC8B00002117 /* Assets.xcassets */; };
 		F7FD49CE2D50FC8B00002117 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FD49C82D50FC8B00002117 /* ContentView.swift */; };
@@ -29,7 +30,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7DC36E52D553C5600778036 /* AdMobAdsUI in Frameworks */,
+				F7DC36EA2D55427C00778036 /* AdMobUI in Frameworks */,
+				F7DC36EC2D55427C00778036 /* AppLovinUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,8 +100,9 @@
 			);
 			name = Sample;
 			packageProductDependencies = (
-				F7AC12A82D50FD4E0008071E /* AdUI */,
 				F7DC36E42D553C5600778036 /* AdMobAdsUI */,
+				F7DC36E92D55427C00778036 /* AdMobUI */,
+				F7DC36EB2D55427C00778036 /* AppLovinUI */,
 			);
 			productName = Sample;
 			productReference = F7FD49A92D50FAE800002117 /* Sample.app */;
@@ -388,13 +391,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F7AC12A82D50FD4E0008071E /* AdUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AdUI;
-		};
 		F7DC36E42D553C5600778036 /* AdMobAdsUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AdMobAdsUI;
+		};
+		F7DC36E92D55427C00778036 /* AdMobUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AdMobUI;
+		};
+		F7DC36EB2D55427C00778036 /* AppLovinUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppLovinUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

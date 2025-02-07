@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation 
+    url: https://iroiro.dev/AdvertisementsUI/documentation/advertisementsui/
+    about: More information on using AdvertisementsUI can be found here.

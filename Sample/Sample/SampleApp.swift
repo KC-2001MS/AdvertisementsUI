@@ -6,10 +6,22 @@
 //
 
 import SwiftUI
-import AdMobAdsUI
+import AdMobUI
+import AppLovinSDK
 
 @main
 struct SampleApp: App {
+    init() {
+        let initConfig = ALSdkInitializationConfiguration(sdkKey: "YOUR_SDK_KEY") { builder in
+              builder.mediationProvider = ALMediationProviderMAX
+          }
+          
+          // SDK を初期化
+          ALSdk.shared().initialize(with: initConfig) { sdkConfig in
+              print("AppLovin SDK Initialized")
+          }
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -11,14 +11,14 @@ import SwiftUI
 
 @available(iOS 17.0, *)
 @Observable
-public final class InterstitialAdManager: NSObject, GADFullScreenContentDelegate {
-    private var interstitial: GADInterstitialAd?
+public final class InterstitialAdManager: NSObject, FullScreenContentDelegate {
+    private var interstitial: InterstitialAd?
     
     @MainActor
     public func loadAd() async {
         do {
             if let id = adUnitID(key: "Interstitial") {
-                self.interstitial = try await GADInterstitialAd.load(withAdUnitID: id, request: GADRequest())
+                self.interstitial = try await InterstitialAd.load(with: id, request: Request())
                 self.interstitial?.fullScreenContentDelegate = self
             }
         } catch {
@@ -36,7 +36,7 @@ public final class InterstitialAdManager: NSObject, GADFullScreenContentDelegate
             return
         }
         
-        ad.present(fromRootViewController: rootViewController)
+        ad.present(from: rootViewController)
     }
     
     

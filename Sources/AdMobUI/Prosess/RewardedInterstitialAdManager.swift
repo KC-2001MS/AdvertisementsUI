@@ -1,5 +1,5 @@
 //
-//  RewardedAdManager.swift
+//  RewardedInterstitialAdManager.swift
 //  AdUI
 //
 //  Created by 茅根啓介 on 2025/02/06.
@@ -9,33 +9,34 @@
 import Observation
 
 @Observable
-public final class RewardedAdManager: NSObject, GADFullScreenContentDelegate {
-    private var rewardedAd: GADRewardedAd?
+public final class RewardedInterstitialAdManager: NSObject, FullScreenContentDelegate {
+    private var rewardedInterstitialAd: RewardedInterstitialAd?
     
     @MainActor
     public func loadAd() async {
         do {
-            if let id = adUnitID(key: "Rewarded") {
-                rewardedAd = try await GADRewardedAd.load(
-                    withAdUnitID: id, request: GADRequest())
-                rewardedAd?.fullScreenContentDelegate = self
+            if let id = adUnitID(key: "RewardedInterstitial") {
+                rewardedInterstitialAd = try await RewardedInterstitialAd.load(
+                    with: id, request: Request())
+                rewardedInterstitialAd?.fullScreenContentDelegate = self
             }
         } catch {
-            print("Failed to load rewarded ad with error: \(error.localizedDescription)")
+            print(
+                "Failed to load rewarded interstitial ad with error: \(error.localizedDescription)")
         }
     }
     
     @MainActor
     public func showAd(completionAction: @autoclosure @escaping () -> Void) {
-      guard let rewardedAd = rewardedAd else {
-        return print("Ad wasn't ready.")
-      }
-
-      rewardedAd.present(fromRootViewController: nil) {
-        let reward = rewardedAd.adReward
-        print("Reward amount: \(reward.amount)")
-        completionAction()
-      }
+        guard let rewardedInterstitialAd = rewardedInterstitialAd else {
+            return print("Ad wasn't ready.")
+        }
+        
+        rewardedInterstitialAd.present(from: nil) {
+            let reward = rewardedInterstitialAd.adReward
+            print("Reward amount: \(reward.amount)")
+            completionAction()
+        }
     }
     
     public func adUnitID(key: String) -> String? {
@@ -70,7 +71,7 @@ public final class RewardedAdManager: NSObject, GADFullScreenContentDelegate {
 //    
 //    public func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
 //        print("\(#function) called")
-//        // Clear the rewarded ad.
-//        rewardedAd = nil
+//        // Clear the rewarded interstitial ad.
+//        rewardedInterstitialAd = nil
 //    }
 }

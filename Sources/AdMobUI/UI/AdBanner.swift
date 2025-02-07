@@ -11,14 +11,14 @@ public struct AdBanner: UIViewRepresentable {
     
     public init() {}
     
-    public func makeUIView(context: Context) -> GADBannerView {
-        let banner = GADBannerView(adSize: GADAdSizeBanner)
+    public func makeUIView(context: Context) -> BannerView {
+        let banner = BannerView(adSize: AdSizeBanner)
         if let id = adUnitID(key: "Banner") {
             banner.adUnitID = id
             let scenes = UIApplication.shared.connectedScenes
             let windowScene = scenes.first as? UIWindowScene
             banner.rootViewController = windowScene?.keyWindow?.rootViewController
-            let request = GADRequest()
+            let request = Request()
             request.scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             banner.load(request)
         }
@@ -32,6 +32,6 @@ public struct AdBanner: UIViewRepresentable {
         return adUnitIDs[key]
     }
  
-    public func updateUIView(_ uiView: GADBannerView, context: Context) {
+    public func updateUIView(_ uiView: BannerView, context: Context) {
     }
 }

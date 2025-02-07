@@ -10,16 +10,16 @@ import SwiftUI
 
 @available(iOS 17.0, *)
 @Observable
-public final class NativeAdManager: NSObject,  @preconcurrency GADNativeAdLoaderDelegate {
-    public var nativeAd: GADNativeAd?
-    private var adLoader: GADAdLoader?
+public final class NativeAdManager: NSObject,  @preconcurrency NativeAdLoaderDelegate {
+    public var nativeAd: NativeAd?
+    private var adLoader: AdLoader?
     
     var action: () -> () = {}
 
     public func loadAd() {
-        let request = GADRequest()
+        let request = Request()
         if let id = adUnitID(key: "Native") {
-            adLoader = GADAdLoader(
+            adLoader = AdLoader(
                 adUnitID: id,
                 rootViewController: nil,
                 adTypes: [.native],
@@ -31,13 +31,13 @@ public final class NativeAdManager: NSObject,  @preconcurrency GADNativeAdLoader
     }
     /// ネイティブ広告の取得成功時に呼ばれる
     @MainActor
-    public func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
+    public func adLoader(_ adLoader: AdLoader, didReceive nativeAd: NativeAd) {
         print("✅ ネイティブ広告が読み込まれました")
         self.nativeAd = nativeAd
     }
     /// ネイティブ広告の取得失敗時に呼ばれる
     @MainActor
-    public func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
+    public func adLoader(_ adLoader: AdLoader, didFailToReceiveAdWithError error: Error) {
         print("❌ ネイティブ広告のロード失敗: \(error.localizedDescription)")
     }
     
@@ -51,9 +51,9 @@ public final class NativeAdManager: NSObject,  @preconcurrency GADNativeAdLoader
 
 @available(iOS 17.0, *)
 public struct NativeAdCard: View {
-    var nativeAd: GADNativeAd
+    var nativeAd: NativeAd
     
-    public init(nativeAd: GADNativeAd) {
+    public init(nativeAd: NativeAd) {
         self.nativeAd = nativeAd
     }
 

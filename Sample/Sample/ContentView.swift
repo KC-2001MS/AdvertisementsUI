@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import AdMobAdsUI
+import AdMobUI
 
 struct ContentView: View {
     @State private var isOpeningInterstitialAd = false

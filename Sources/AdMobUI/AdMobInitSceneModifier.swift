@@ -10,7 +10,7 @@ import GoogleMobileAds
 
 extension Scene {
     public func admobContainer() -> some Scene {
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        MobileAds.shared.start(completionHandler: nil)
         return self
     }
 }
