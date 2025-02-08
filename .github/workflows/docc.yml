@@ -48,7 +48,12 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: docs/AdMobUI
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/AppLovinUI
 
   deploy:
     runs-on: ubuntu-latest
