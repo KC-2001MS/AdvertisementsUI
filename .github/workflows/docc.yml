@@ -48,12 +48,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/AdMobUI
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/AppLovinUI
+          path: docs
 
   deploy:
     runs-on: ubuntu-latest
@@ -63,7 +58,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: "https://iroiro.dev/documentation/"
+      url: "https://iroiro.dev/AdvertisementsUI/documentation/"
 
     steps:
       - name: Deploy to GitHub Pages
