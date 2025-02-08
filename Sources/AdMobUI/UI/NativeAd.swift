@@ -5,6 +5,7 @@
 //  Created by 茅根啓介 on 2025/02/05.
 //
 
+#if canImport(GoogleMobileAds)
 @preconcurrency import GoogleMobileAds
 import SwiftUI
 
@@ -93,4 +94,4 @@ public struct NativeAdCard: View {
         .padding()
     }
 }
-
+#endif

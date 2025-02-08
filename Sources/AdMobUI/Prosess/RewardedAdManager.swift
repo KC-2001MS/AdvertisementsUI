@@ -4,7 +4,7 @@
 //
 //  Created by 茅根啓介 on 2025/02/06.
 //
-
+#if canImport(GoogleMobileAds)
 @preconcurrency import GoogleMobileAds
 import Observation
 
@@ -74,3 +74,4 @@ public final class RewardedAdManager: NSObject, FullScreenContentDelegate {
 //        rewardedAd = nil
 //    }
 }
+#endif

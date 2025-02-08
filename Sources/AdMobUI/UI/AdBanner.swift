@@ -1,6 +1,6 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
-
+#if canImport(GoogleMobileAds)
 import SwiftUI
 import GoogleMobileAds
 
@@ -35,3 +35,4 @@ public struct AdBanner: UIViewRepresentable {
     public func updateUIView(_ uiView: BannerView, context: Context) {
     }
 }
+#endif

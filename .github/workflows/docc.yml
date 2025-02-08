@@ -20,12 +20,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: iOS
+      - name: Prepare directories
         run: |
-          xcodebuild docbuild \
-            -scheme AdMobUI \
-            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
-            -derivedDataPath ./DerivedData
+          mkdir -p docs/AdMobUI
+          mkdir -p docs/AppLovinUI
 
       - name: Build DocC for AdMobUI
         run: |
@@ -35,14 +33,8 @@ jobs:
             --disable-indexing \
             --transform-for-static-hosting \
             --output-path ./docs/AdMobUI \
-            --hosting-base-path AdMobUI
-
-      - name: iOS
-        run: |
-          xcodebuild docbuild \
-            -scheme AppLovinUI \
-            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
-            -derivedDataPath ./DerivedData
+            --hosting-base-path AdMobUI \
+            --platform iOS
 
       - name: Build DocC for AppLovinUI
         run: |
@@ -52,10 +44,8 @@ jobs:
             --disable-indexing \
             --transform-for-static-hosting \
             --output-path ./docs/AppLovinUI \
-            --hosting-base-path AppLovinUI
-
-      - name: Copy index.html to root
-        run: cp ./docs/AdMobUI/index.html ./docs/index.html
+            --hosting-base-path AppLovinUI \
+            --platform iOS
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -4,7 +4,7 @@
 //
 //  Created by 茅根啓介 on 2025/02/04.
 //
-
+#if canImport(GoogleMobileAds)
 import SwiftUI
 @preconcurrency import GoogleMobileAds
 
@@ -76,3 +76,4 @@ public final class InterstitialAdManager: NSObject, FullScreenContentDelegate {
 //      interstitial = nil
 //    }
 }
+#endif

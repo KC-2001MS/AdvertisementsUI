@@ -5,6 +5,7 @@
 //  Created by 茅根啓介 on 2025/02/05.
 //
 
+#if canImport(GoogleMobileAds)
 import SwiftUI
 
 @available(iOS 17.0, *)
@@ -37,3 +38,4 @@ extension View {
         self.modifier(InterstitialAdSheetModifier(isPresented: isPresented))
     }
 }
+#endif
