@@ -33,7 +33,7 @@ jobs:
             --disable-indexing \
             --transform-for-static-hosting \
             --output-path ./docs/AdMobUI \
-            --hosting-base-path AdMobUI
+            --hosting-base-path AdvertisementsUI
 
       - name: Build DocC for AppLovinUI
         run: |
@@ -43,7 +43,7 @@ jobs:
             --disable-indexing \
             --transform-for-static-hosting \
             --output-path ./docs/AppLovinUI \
-            --hosting-base-path AppLovinUI
+            --hosting-base-path AdvertisementsUI
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
