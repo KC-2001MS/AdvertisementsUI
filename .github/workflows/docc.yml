@@ -43,7 +43,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: "https://iroiro.dev/AdvertisementsUI/documentation/advertisementsui/"
+      url: "https://iroiro.dev/AdvertisementsUI/documentation/"
 
     steps:
       - name: Deploy to GitHub Pages
