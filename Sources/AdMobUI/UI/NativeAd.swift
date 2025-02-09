@@ -9,17 +9,27 @@
 @preconcurrency import GoogleMobileAds
 import SwiftUI
 
+/// Class to control the display of native ads
 @available(iOS 17.0, *)
+@available(macOS, unavailable)
+@available(visionOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 @Observable
 public final class NativeAdManager: NSObject,  @preconcurrency NativeAdLoaderDelegate {
     public var nativeAd: NativeAd?
     private var adLoader: AdLoader?
-    
-    var action: () -> () = {}
 
+    private var key: String
+    
+    public init(key: String? = nil) {
+        self.key = key ?? "Native"
+    }
+
+    /// Function to load ads
     public func loadAd() {
         let request = Request()
-        if let id = adUnitID(key: "Native") {
+        if let id = adUnitID(key: key) {
             adLoader = AdLoader(
                 adUnitID: id,
                 rootViewController: nil,
@@ -30,19 +40,17 @@ public final class NativeAdManager: NSObject,  @preconcurrency NativeAdLoaderDel
             adLoader?.load(request)
         }
     }
-    /// ネイティブ広告の取得成功時に呼ばれる
+
     @MainActor
     public func adLoader(_ adLoader: AdLoader, didReceive nativeAd: NativeAd) {
-        print("✅ ネイティブ広告が読み込まれました")
         self.nativeAd = nativeAd
     }
-    /// ネイティブ広告の取得失敗時に呼ばれる
+
     @MainActor
     public func adLoader(_ adLoader: AdLoader, didFailToReceiveAdWithError error: Error) {
-        print("❌ ネイティブ広告のロード失敗: \(error.localizedDescription)")
     }
     
-    func adUnitID(key: String) -> String? {
+    private func adUnitID(key: String) -> String? {
         guard let adUnitIDs = Bundle.main.object(forInfoDictionaryKey: "AdUnitIDs") as? [String: String] else {
             return nil
         }
@@ -50,10 +58,16 @@ public final class NativeAdManager: NSObject,  @preconcurrency NativeAdLoaderDel
     }
 }
 
+/// View to display native ads
 @available(iOS 17.0, *)
+@available(macOS, unavailable)
+@available(visionOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 public struct NativeAdCard: View {
     var nativeAd: NativeAd
     
+    /// Create a view to display a native ad.
     public init(nativeAd: NativeAd) {
         self.nativeAd = nativeAd
     }

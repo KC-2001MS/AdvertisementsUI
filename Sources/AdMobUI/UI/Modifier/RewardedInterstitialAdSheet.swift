@@ -9,14 +9,18 @@
 import SwiftUI
 
 @available(iOS 17.0, *)
-public struct RewardedInterstitialAdSheetModifier: ViewModifier {
+@available(macOS, unavailable)
+@available(visionOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
+struct RewardedInterstitialAdSheetModifier: ViewModifier {
     @Binding private var isPresented: Bool
     
     @State private var rewardedInterstitialAdManager = RewardedInterstitialAdManager()
     
-    private var completionAction: () -> Void
+    var completionAction: () -> Void
 
-    public init(
+    init(
         isPresented: Binding<Bool>,
         completionAction: @escaping () -> Void
     ) {
@@ -24,7 +28,7 @@ public struct RewardedInterstitialAdSheetModifier: ViewModifier {
         self.completionAction = completionAction
     }
 
-    public func body(content: Content) -> some View {
+    func body(content: Content) -> some View {
         content
             .task(id: isPresented) {
                 await rewardedInterstitialAdManager.loadAd()
@@ -39,8 +43,17 @@ public struct RewardedInterstitialAdSheetModifier: ViewModifier {
 }
 
 @available(iOS 17.0, *)
+@available(macOS, unavailable)
+@available(visionOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 extension View {
-    public func rewardedInterstitialAdSheetSheet(
+    /// Modifier to display rewarded interstitial ads
+    /// - Parameters:
+    ///   - isPresented: A binding to a Boolean value that determines whether to present the sheet that you create in the modifier’s content closure.
+    ///   - completionAction: Actions that define the reward after displaying an ad
+    /// - Returns: View that displays ads when the variable passed to isPresented is true
+    public func rewardedInterstitialAdSheet(
         isPresented: Binding<Bool>,
         completionAction: @escaping () -> Void
     ) -> some View {

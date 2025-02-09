@@ -12,14 +12,14 @@ let package = Package(
             name: "AdMobUI",
             targets: ["AdMobUI"]
         ),
-        .library(
-            name: "AppLovinUI",
-            targets: ["AppLovinUI"]
-        ),
+//        .library(
+//            name: "AppLovinUI",
+//            targets: ["AppLovinUI"]
+//        ),
     ],
     dependencies: [
         .package(url: "https://github.com/googleads/swift-package-manager-google-mobile-ads.git", from: "12.0.0"),
-        .package(url: "https://github.com/AppLovin/AppLovin-MAX-Swift-Package.git", from: "13.1.0"),
+//        .package(url: "https://github.com/AppLovin/AppLovin-MAX-Swift-Package.git", from: "13.1.0"),
         .package(url: "https://github.com/apple/swift-docc-plugin.git", from: "1.4.3"),
     ],
     targets: [
@@ -32,15 +32,15 @@ let package = Package(
                 )
             ]
         ),
-        .target(
-            name: "AppLovinUI",
-            dependencies: [
-                .product(
-                    name: "AppLovinSDK",
-                    package: "AppLovin-MAX-Swift-Package"
-                )
-            ]
-        ),
+//        .target(
+//            name: "AppLovinUI",
+//            dependencies: [
+//                .product(
+//                    name: "AppLovinSDK",
+//                    package: "AppLovin-MAX-Swift-Package"
+//                )
+//            ]
+//        ),
         .testTarget(
             name: "AdUITests",
             dependencies: [

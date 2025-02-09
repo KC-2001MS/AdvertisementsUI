@@ -9,14 +9,26 @@
 @preconcurrency import GoogleMobileAds
 import Observation
 
+/// Class to control the display of rewarded interstitial ads
+@available(iOS 17.0, *)
+@available(macOS, unavailable)
+@available(visionOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 @Observable
 public final class RewardedInterstitialAdManager: NSObject, FullScreenContentDelegate {
     private var rewardedInterstitialAd: RewardedInterstitialAd?
     
+    private var key: String
+    
+    public init(key: String? = nil) {
+        self.key = key ?? "RewardedInterstitial"
+    }
+    /// Function to load ads
     @MainActor
     public func loadAd() async {
         do {
-            if let id = adUnitID(key: "RewardedInterstitial") {
+            if let id = adUnitID(key: key) {
                 rewardedInterstitialAd = try await RewardedInterstitialAd.load(
                     with: id, request: Request())
                 rewardedInterstitialAd?.fullScreenContentDelegate = self
@@ -27,6 +39,7 @@ public final class RewardedInterstitialAdManager: NSObject, FullScreenContentDel
         }
     }
     
+    /// Functions for displaying ads
     @MainActor
     public func showAd(completionAction: @autoclosure @escaping () -> Void) {
         guard let rewardedInterstitialAd = rewardedInterstitialAd else {
@@ -40,40 +53,11 @@ public final class RewardedInterstitialAdManager: NSObject, FullScreenContentDel
         }
     }
     
-    public func adUnitID(key: String) -> String? {
+    private func adUnitID(key: String) -> String? {
         guard let adUnitIDs = Bundle.main.object(forInfoDictionaryKey: "AdUnitIDs") as? [String: String] else {
             return nil
         }
         return adUnitIDs[key]
     }
-    
-//    public func adDidRecordImpression(_ ad: GADFullScreenPresentingAd) {
-//        print("\(#function) called")
-//    }
-//    
-//    public func adDidRecordClick(_ ad: GADFullScreenPresentingAd) {
-//        print("\(#function) called")
-//    }
-//    
-//    public func ad(
-//        _ ad: GADFullScreenPresentingAd,
-//        didFailToPresentFullScreenContentWithError error: Error
-//    ) {
-//        print("\(#function) called")
-//    }
-//    
-//    public func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-//        print("\(#function) called")
-//    }
-//    
-//    public func adWillDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-//        print("\(#function) called")
-//    }
-//    
-//    public func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-//        print("\(#function) called")
-//        // Clear the rewarded interstitial ad.
-//        rewardedInterstitialAd = nil
-//    }
 }
 #endif

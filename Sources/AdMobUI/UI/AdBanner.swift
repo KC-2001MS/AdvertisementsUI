@@ -4,11 +4,16 @@
 import SwiftUI
 import GoogleMobileAds
 
-// バナー表示用のクラス
+/// View to display banner ads
 @available(iOS 17.0, *)
+@available(macOS, unavailable)
+@available(visionOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 public struct AdBanner: UIViewRepresentable {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
+    /// Create a view to display a banner ad.
     public init() {}
     
     public func makeUIView(context: Context) -> BannerView {
@@ -25,7 +30,7 @@ public struct AdBanner: UIViewRepresentable {
         return banner
     }
     
-    func adUnitID(key: String) -> String? {
+    private func adUnitID(key: String) -> String? {
         guard let adUnitIDs = Bundle.main.object(forInfoDictionaryKey: "AdUnitIDs") as? [String: String] else {
             return nil
         }

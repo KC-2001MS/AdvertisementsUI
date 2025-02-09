@@ -9,16 +9,20 @@
 import SwiftUI
 
 @available(iOS 17.0, *)
-public struct InterstitialAdSheetModifier: ViewModifier {
+@available(macOS, unavailable)
+@available(visionOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
+struct InterstitialAdSheetModifier: ViewModifier {
     @Binding private var isPresented: Bool
     
     @State private var interstitialAdManager = InterstitialAdManager()
 
-    public init(isPresented: Binding<Bool>) {
+    init(isPresented: Binding<Bool>) {
         self._isPresented = isPresented
     }
 
-    public func body(content: Content) -> some View {
+    func body(content: Content) -> some View {
         content
             .task(id: isPresented) {
                 await interstitialAdManager.loadAd()
@@ -33,7 +37,14 @@ public struct InterstitialAdSheetModifier: ViewModifier {
 }
 
 @available(iOS 17.0, *)
+@available(macOS, unavailable)
+@available(visionOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 extension View {
+    /// Modifier to display interstitial ads
+    /// - Parameter isPresented: A binding to a Boolean value that determines whether to present the sheet that you create in the modifier’s content closure.
+    /// - Returns: View that displays ads when the variable passed to isPresented is true
     public func interstitialAdSheet(isPresented: Binding<Bool>) -> some View {
         self.modifier(InterstitialAdSheetModifier(isPresented: isPresented))
     }

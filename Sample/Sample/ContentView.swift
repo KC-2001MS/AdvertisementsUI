@@ -72,10 +72,10 @@ struct ContentView: View {
                 .padding(0)
         }
         .interstitialAdSheet(isPresented: $isOpeningInterstitialAd)
-        .rewardedAdSheetSheet(isPresented: $isOpeningRewordedAd) {
+        .rewardedAdSheet(isPresented: $isOpeningRewordedAd) {
             rewordedCount += 1
         }
-        .rewardedInterstitialAdSheetSheet(isPresented: $isOpeningRewordedInterstitialAd) {
+        .rewardedInterstitialAdSheet(isPresented: $isOpeningRewordedInterstitialAd) {
             rewordedInterstitialCount += 1
         }
         .task {
