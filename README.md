@@ -21,6 +21,164 @@ The following environment is required to use this library.
 </p>
 
 ## Demo
+Basically, the following methods are used to display the information.
+### 1. Preparation
+``` swift
+import SwiftUI
+import AdMobUI
+
+@main
+struct SampleApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+        .admobContainer()
+    }
+}
+```
+### 2. Display
+#### Banner
+``` swift
+import SwiftUI
+import AdMobUI
+
+struct ContentView: View {
+    var body: some View {
+        NavigationStack {
+            AdBanner()
+        }
+    }
+}
+```
+#### Native
+``` swift
+import SwiftUI
+import AdMobUI
+
+struct ContentView: View {
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    NativeAdCard()
+                } header: {
+                    Text("Google Admob")
+                }
+            }
+            .navigationTitle("Ads Sample")
+        }
+    }
+}
+```
+#### Interstitial
+``` swift
+import SwiftUI
+import AdMobUI
+
+struct ContentView: View {
+    @State private var isOpeningInterstitialAd = false
+    
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    Button {
+                        isOpeningInterstitialAd.toggle()
+                    } label: {
+                        Text("Show Interstitial Ad")
+                    }
+                } header: {
+                    Text("Google Admob")
+                }
+            }
+            .navigationTitle("Ads Sample")
+        }
+        .interstitialAdSheet(isPresented: $isOpeningInterstitialAd)
+    }
+}
+```
+#### Reworded
+``` swift
+import SwiftUI
+import AdMobUI
+
+struct ContentView: View {
+    @State private var isOpeningRewordedAd = false
+    
+    @State private var rewordedCount = 0
+    
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    GroupBox {
+                        Button {
+                            isOpeningRewordedAd.toggle()
+                        } label: {
+                            Text("Show Reworded Ad")
+                        }
+                    } label: {
+                        LabeledContent("Reworded Count", value: rewordedCount, format: .number)
+                    }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    .padding(5)
+                    .backgroundStyle(.clear)
+                } header: {
+                    Text("Google Admob")
+                }
+            }
+            .navigationTitle("Ads Sample")
+        }
+        .rewardedAdSheet(isPresented: $isOpeningRewordedAd) {
+            rewordedCount += 1
+        }
+    }
+}
+```
+#### Reworded Interstitial
+``` swift
+import SwiftUI
+import AdMobUI
+
+struct ContentView: View {
+    @State private var isOpeningRewordedInterstitialAd = false
+    
+    @State private var rewordedInterstitialCount = 0
+    
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    GroupBox {
+                        Button {
+                            isOpeningRewordedInterstitialAd.toggle()
+                        } label: {
+                            Text("Show Reworded Interstitial Ad")
+                        }
+                    } label: {
+                        LabeledContent("Reworded Interstitial Count", value: rewordedInterstitialCount, format: .number)
+                    }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    .padding(5)
+                    .backgroundStyle(.clear)
+                } header: {
+                    Text("Google Admob")
+                }
+            }
+            .navigationTitle("Ads Sample")
+            
+            
+            AdBanner()
+                .padding(0)
+        }
+        .rewardedInterstitialAdSheet(isPresented: $isOpeningRewordedInterstitialAd) {
+            rewordedInterstitialCount += 1
+        }
+    }
+}
+```
+
 To verify the operation of this library, I created a sample application in the library. Please refer to it.
 
 ## Usage
@@ -30,7 +188,7 @@ It will be described in detail at a later date.
 
 Swift-DocC is currently being implemented.
 
-[Documentation](https://kc-2001ms.github.io/AdvertisementsUI/documentation/advertisementsui)
+[Documentation](https://kc-2001ms.github.io/AdvertisementsUI/documentation/admobui/)
 
 ## Install
 
@@ -40,9 +198,9 @@ Each framework has a different configuration method.
 ### AdMobUI
 1. [Adding package dependencies to your app](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app)
 2. Add the following to info.plist
-``` plist
+```plist
     <key>NSUserTrackingUsageDescription</key>
-    <string>This identifier will be used to deliver personalized ads to you.</string>
+    <string>{some reason}</string>
     <key>SKAdNetworkItems</key>
     <array>
         <dict>
@@ -221,7 +379,7 @@ Each framework has a different configuration method.
 The values of the keys in the AdUnitIDs dictionary are the following keys if not specified in the Swift code.
 If specified, custom keys can be used.
 
-``` plist
+```plist
     <key>GADApplicationIdentifier</key>
     <string>{some identifier}</string>
     <key>AdUnitIDs</key>
@@ -238,6 +396,9 @@ If specified, custom keys can be used.
         <string>{some identifier}</string>
     </dict>
 ```
+4. Add code
+See demo for details
+
 <!--### AppLovinUI-->
 <!---->
 <!--It will be described in detail at a later date.-->
@@ -246,8 +407,15 @@ If specified, custom keys can be used.
 See [CONTRIBUTING.md](https://github.com/KC-2001MS/AdvertisementsUI/blob/main/CONTRIBUTING.md) if you want to make a contribution.
 
 ## Licence
-
 [AdvertisementsUI](https://github.com/KC-2001MS/AdvertisementsUI/blob/main/LICENSE)
+
+## Dependencies
+This project depends on the following Apache-2.0 licensed libraries:
+
+- **GogleMobileAds** (Version 12.0.0) - [License](LICENSES/GogleMobileAds_LICENSE)
+- **GoogleUserMessagingPlatform** (Version 2.7.0) - [License](LICENSES/GoogleUserMessagingPlatform_LICENSE)
+- **SwiftDocCPlugin** (Version 1.4.3) - [License](LICENSES/SwiftDocCPlugin_LICENSE)
+- **SymbolKit** (Version 1.0.0) - [License](LICENSES/SymbolKit_LICENSE)
 
 ## Supporting
 
