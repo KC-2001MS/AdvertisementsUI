@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F7DC36EA2D55427C00778036 /* AdMobUI in Frameworks */ = {isa = PBXBuildFile; productRef = F7DC36E92D55427C00778036 /* AdMobUI */; };
 		F7FD49CC2D50FC8B00002117 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD49C52D50FC8B00002117 /* Preview Assets.xcassets */; };
 		F7FD49CD2D50FC8B00002117 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD49C72D50FC8B00002117 /* Assets.xcassets */; };
 		F7FD49CE2D50FC8B00002117 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FD49C82D50FC8B00002117 /* ContentView.swift */; };
@@ -29,7 +28,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7DC36EA2D55427C00778036 /* AdMobUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,11 +310,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.KCsAdSample1..Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Debug;
@@ -354,11 +352,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.KCsAdSample1..Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Release;

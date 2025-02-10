@@ -44,8 +44,8 @@ let package = Package(
         .testTarget(
             name: "AdUITests",
             dependencies: [
-                "AdMobUI",
-                "AppLovinUI"
+                "AdMobUI"
+//                "AppLovinUI"
             ]
         ),
     ]

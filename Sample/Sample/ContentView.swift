@@ -19,8 +19,6 @@ struct ContentView: View {
     
     @State private var rewordedInterstitialCount = 0
     
-    @State private var nativeAdViewModel = NativeAdManager()
-    
     var body: some View {
         NavigationStack {
             List {
@@ -57,10 +55,8 @@ struct ContentView: View {
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     .padding(5)
                     .backgroundStyle(.clear)
-                    
-                    if let nativeAd = nativeAdViewModel.nativeAd {
-                        NativeAdCard(nativeAd: nativeAd)
-                    }
+
+                    NativeAdCard()
                 } header: {
                     Text("Google Admob")
                 }
@@ -77,9 +73,6 @@ struct ContentView: View {
         }
         .rewardedInterstitialAdSheet(isPresented: $isOpeningRewordedInterstitialAd) {
             rewordedInterstitialCount += 1
-        }
-        .task {
-            nativeAdViewModel.loadAd()
         }
     }
 }
