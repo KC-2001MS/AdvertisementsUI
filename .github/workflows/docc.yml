@@ -29,7 +29,7 @@ jobs:
             --transform-for-static-hosting \
             --output-path ./docs \
             --transform-for-static-hosting \
-            --hosting-base-path AdMobUI
+            --hosting-base-path AdvertisementsUI
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -44,7 +44,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: "https://iroiro.dev/AdvertisementsUI/documentation/admobui/"
+      url: "https://iroiro.dev/AdvertisementsUI/documentation/advertisementsui/"
 
     steps:
       - name: Deploy to GitHub Pages
