@@ -21,6 +21,9 @@ The following environment is required to use this library.
 </p>
 
 ## Demo
+To verify the operation of this library, I created a sample application in the library. Please refer to it.
+
+## Usage
 Basically, the following methods are used to display the information.
 ### 1. Preparation
 ``` swift
@@ -179,16 +182,11 @@ struct ContentView: View {
 }
 ```
 
-To verify the operation of this library, I created a sample application in the library. Please refer to it.
-
-## Usage
-It will be described in detail at a later date.
-
-## Swift-DocC
-
-Swift-DocC is currently being implemented.
-
-[Documentation](https://kc-2001ms.github.io/AdvertisementsUI/documentation/admobui/)
+<!--## Swift-DocC-->
+<!---->
+<!--Swift-DocC is currently being implemented.-->
+<!---->
+<!--[Documentation](https://kc-2001ms.github.io/AdvertisementsUI/documentation/admobui/)-->
 
 ## Install
 
