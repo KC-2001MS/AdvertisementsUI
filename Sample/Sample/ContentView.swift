@@ -9,34 +9,26 @@ import SwiftUI
 import AdMobUI
 
 struct ContentView: View {
-    @State private var isOpeningInterstitialAd = false
-    
-    @State private var isOpeningRewordedAd = false
-    
-    @State private var isOpeningRewordedInterstitialAd = false
-    
-    @State private var rewordedCount = 0
-    
-    @State private var rewordedInterstitialCount = 0
+    @State private var contentViewModel = ContentViewModel()
     
     var body: some View {
         NavigationStack {
             List {
                 Section {
                     Button {
-                        isOpeningInterstitialAd.toggle()
+                        contentViewModel.isOpeningInterstitialAd.toggle()
                     } label: {
                         Text("Show Interstitial Ad")
                     }
                     
                     GroupBox {
                         Button {
-                            isOpeningRewordedAd.toggle()
+                            contentViewModel.isOpeningRewordedAd.toggle()
                         } label: {
                             Text("Show Reworded Ad")
                         }
                     } label: {
-                        LabeledContent("Reworded Count", value: rewordedCount, format: .number)
+                        LabeledContent("Reworded Count", value: contentViewModel.rewordedCount, format: .number)
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     .padding(5)
@@ -45,34 +37,47 @@ struct ContentView: View {
                     
                     GroupBox {
                         Button {
-                            isOpeningRewordedInterstitialAd.toggle()
+                            contentViewModel.isOpeningRewordedInterstitialAd.toggle()
                         } label: {
                             Text("Show Reworded Interstitial Ad")
                         }
                     } label: {
-                        LabeledContent("Reworded Interstitial Count", value: rewordedInterstitialCount, format: .number)
+                        LabeledContent("Reworded Interstitial Count", value: contentViewModel.rewordedInterstitialCount, format: .number)
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     .padding(5)
                     .backgroundStyle(.clear)
 
-                    NativeAdCard()
+                    Toggle(isOn: $contentViewModel.isDisplayingNativeAd) {
+                        Text("Show Native Ad")
+                    }
+                    
+                    Toggle(isOn: $contentViewModel.isDisplayingAdBanner) {
+                        Text("Show Ad Banner")
+                    }
                 } header: {
                     Text("Google Admob")
                 }
             }
-            .navigationTitle("Ads Sample")
-            
-            
-            AdBanner()
-                .padding(0)
+            .navigationTitle("Sample App")
+            .safeAreaInset(edge: .bottom) {
+                if contentViewModel.isDisplayingAdBanner {
+                    AdBanner()
+                        .frame(height: 300)
+                }
+            }
+            .safeAreaInset(edge: .bottom) {
+                if contentViewModel.isDisplayingNativeAd {
+                    NativeAdCard()
+                }
+            }
         }
-        .interstitialAdSheet(isPresented: $isOpeningInterstitialAd)
-        .rewardedAdSheet(isPresented: $isOpeningRewordedAd) {
-            rewordedCount += 1
+        .interstitialAdSheet(isPresented: $contentViewModel.isOpeningInterstitialAd)
+        .rewardedAdSheet(isPresented: $contentViewModel.isOpeningRewordedAd) {
+            contentViewModel.rewordedCount += 1
         }
-        .rewardedInterstitialAdSheet(isPresented: $isOpeningRewordedInterstitialAd) {
-            rewordedInterstitialCount += 1
+        .rewardedInterstitialAdSheet(isPresented: $contentViewModel.isOpeningRewordedInterstitialAd) {
+            contentViewModel.rewordedInterstitialCount += 1
         }
     }
 }

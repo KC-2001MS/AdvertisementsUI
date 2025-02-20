@@ -71,7 +71,7 @@ public struct NativeAdCard: View {
     @State private var nativeAdManager: NativeAdManager
     
     public init(key: String? = nil) {
-        self.nativeAdManager = NativeAdManager(key: "Native")
+        self.nativeAdManager = NativeAdManager(key: key)
     }
     
     public var body: some View {
@@ -95,23 +95,25 @@ public struct NativeAdCard: View {
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity)
             
-            if let callToAction = nativeAdManager.nativeAd?.callToAction {
-                Button {
-                } label: {
-                    Text(callToAction)
-                        .font(.headline)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+            Group {
+                if let callToAction = nativeAdManager.nativeAd?.callToAction {
+                    Button {
+                    } label: {
+                        Text(callToAction)
+                            .font(.headline)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .foregroundStyle(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                } else {
+                    Spacer()
                 }
-            } else {
-                Spacer()
-                    .frame(height: 50)
             }
+            .frame(height: 50)
         }
-        .padding(5)
+        .padding(20)
         .frame(maxWidth: .infinity)
         .task {
             nativeAdManager.loadAd()
