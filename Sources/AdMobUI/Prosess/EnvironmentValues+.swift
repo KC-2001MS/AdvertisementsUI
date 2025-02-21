@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+@available(iOS 17.0, *)
+@available(macOS, unavailable)
+@available(visionOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 extension EnvironmentValues {
-    
+    @Entry public var adBannerSize: AdBannerSize?
 }

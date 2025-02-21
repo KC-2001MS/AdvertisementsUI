@@ -62,10 +62,12 @@ struct ContentView: View {
             .navigationTitle("Sample App")
             .safeAreaInset(edge: .bottom) {
                 if contentViewModel.isDisplayingAdBanner {
-                    AdBanner()
+                    AdBannerCard()
                         .frame(height: 300)
                 }
             }
+//            .adBanner(isPresented: $contentViewModel.isDisplayingAdBanner)
+//            .environment(\.adBannerSize, .custom(width: 320, height: 300))
             .safeAreaInset(edge: .bottom) {
                 if contentViewModel.isDisplayingNativeAd {
                     NativeAdCard()

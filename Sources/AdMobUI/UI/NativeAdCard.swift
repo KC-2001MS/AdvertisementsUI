@@ -128,6 +128,7 @@ public struct NativeAdCard: View {
                     )
             }
         }
-}
+        .background(Color(.systemBackground))
+    }
 }
 #endif

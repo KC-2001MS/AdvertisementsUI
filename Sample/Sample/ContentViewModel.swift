@@ -19,7 +19,7 @@ final class ContentViewModel {
     
     var rewordedInterstitialCount = 0
     
-    var isDisplayingAdBanner = false {
+    var isDisplayingAdBanner = true {
         didSet {
             if isDisplayingAdBanner {
                 isDisplayingNativeAd = false
@@ -27,7 +27,7 @@ final class ContentViewModel {
         }
     }
     
-    var isDisplayingNativeAd = true {
+    var isDisplayingNativeAd = false {
         didSet {
             if isDisplayingNativeAd {
                 isDisplayingAdBanner = false

@@ -49,7 +49,7 @@ import AdMobUI
 struct ContentView: View {
     var body: some View {
         NavigationStack {
-            AdBanner()
+            AdBannerCard()
         }
     }
 }
@@ -69,7 +69,7 @@ struct ContentView: View {
                     Text("Google Admob")
                 }
             }
-            .navigationTitle("Ads Sample")
+            .navigationTitle("Sample")
         }
     }
 }
@@ -95,7 +95,7 @@ struct ContentView: View {
                     Text("Google Admob")
                 }
             }
-            .navigationTitle("Ads Sample")
+            .navigationTitle("Sample")
         }
         .interstitialAdSheet(isPresented: $isOpeningInterstitialAd)
     }
@@ -131,7 +131,7 @@ struct ContentView: View {
                     Text("Google Admob")
                 }
             }
-            .navigationTitle("Ads Sample")
+            .navigationTitle("Sample")
         }
         .rewardedAdSheet(isPresented: $isOpeningRewordedAd) {
             rewordedCount += 1
@@ -169,11 +169,7 @@ struct ContentView: View {
                     Text("Google Admob")
                 }
             }
-            .navigationTitle("Ads Sample")
-            
-            
-            AdBanner()
-                .padding(0)
+            .navigationTitle("Sample")
         }
         .rewardedInterstitialAdSheet(isPresented: $isOpeningRewordedInterstitialAd) {
             rewordedInterstitialCount += 1

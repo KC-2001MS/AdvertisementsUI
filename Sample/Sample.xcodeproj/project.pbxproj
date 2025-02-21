@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F7D4FEB42D5ACC4600F10001 /* AdMobUI in Frameworks */ = {isa = PBXBuildFile; productRef = F7DC36E92D55427C00778036 /* AdMobUI */; };
 		F7DE8AEE2D679EC4001E427F /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE8AED2D679EBF001E427F /* ContentViewModel.swift */; };
+		F7DE8AFE2D67C647001E427F /* AdMobUI in Frameworks */ = {isa = PBXBuildFile; productRef = F7DE8AFD2D67C647001E427F /* AdMobUI */; };
 		F7FD49CC2D50FC8B00002117 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD49C52D50FC8B00002117 /* Preview Assets.xcassets */; };
 		F7FD49CD2D50FC8B00002117 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD49C72D50FC8B00002117 /* Assets.xcassets */; };
 		F7FD49CE2D50FC8B00002117 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FD49C82D50FC8B00002117 /* ContentView.swift */; };
@@ -31,7 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7D4FEB42D5ACC4600F10001 /* AdMobUI in Frameworks */,
+				F7DE8AFE2D67C647001E427F /* AdMobUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +101,7 @@
 			);
 			name = Sample;
 			packageProductDependencies = (
-				F7DC36E92D55427C00778036 /* AdMobUI */,
+				F7DE8AFD2D67C647001E427F /* AdMobUI */,
 			);
 			productName = Sample;
 			productReference = F7FD49A92D50FAE800002117 /* Sample.app */;
@@ -308,7 +308,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
@@ -352,7 +352,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
@@ -395,7 +395,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F7DC36E92D55427C00778036 /* AdMobUI */ = {
+		F7DE8AFD2D67C647001E427F /* AdMobUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AdMobUI;
 		};
