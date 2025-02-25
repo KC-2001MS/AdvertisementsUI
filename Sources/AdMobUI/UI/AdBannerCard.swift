@@ -22,9 +22,10 @@ struct AdBannerCardInternal: UIViewRepresentable {
             banner.rootViewController = windowScene?.keyWindow?.rootViewController
             let request = Request()
             
-            if let alignment = adBannerSize.alignment {
+            if adBannerSize.isOllapsible {
+                print("collapsible")
                 let extras = Extras()
-                extras.additionalParameters = ["collapsible" : alignment.rawValue]
+                extras.additionalParameters = ["collapsible" : adBannerSize.verticalEdge == .bottom ? "bottom" : "top"]
                 request.register(extras)
             }
             
@@ -60,9 +61,11 @@ public struct AdBannerCard: View {
     
     public var body: some View {
         Group {
-            AdBannerCardInternal(adBannerSize: adBannerSize ?? .smart(width: viewSize.width))
-                .frame(maxHeight: adBannerSize?.size.size.height ?? .infinity)
+            AdBannerCardInternal(
+                adBannerSize: adBannerSize ?? .smart(width: viewSize.width)
+            )
         }
+        .frame(maxHeight: adBannerSize?.size.size.height ?? .infinity)
         .overlay(
             GeometryReader { geometry in
                 Color.clear
@@ -70,11 +73,19 @@ public struct AdBannerCard: View {
                         viewSize = geometry.size
                     }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         )
-//        .environment(\.adBannerSize, adBannerSize == nil ? AdBannerSize(width: viewSize.width) : adBannerSize)
+        .environment(
+            \.adBannerSize,
+             adBannerSize == nil ? .smart(width: viewSize.width) : adBannerSize
+        )
     }
 }
 
 typealias AdBanner = AdBannerCard
+
+#Preview {
+    AdBannerCard()
+        .admobContainer()
+}
 #endif

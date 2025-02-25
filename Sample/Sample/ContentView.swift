@@ -48,8 +48,10 @@ struct ContentView: View {
                     .padding(5)
                     .backgroundStyle(.clear)
 
-                    Toggle(isOn: $contentViewModel.isDisplayingNativeAd) {
-                        Text("Show Native Ad")
+                    NavigationLink {
+                        NativeAdSampleView()
+                    } label: {
+                        Text("Native Ads")
                     }
                     
                     Toggle(isOn: $contentViewModel.isDisplayingAdBanner) {
@@ -60,19 +62,7 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Sample App")
-            .safeAreaInset(edge: .bottom) {
-                if contentViewModel.isDisplayingAdBanner {
-                    AdBannerCard()
-                        .frame(height: 300)
-                }
-            }
-//            .adBanner(isPresented: $contentViewModel.isDisplayingAdBanner)
-//            .environment(\.adBannerSize, .custom(width: 320, height: 300))
-            .safeAreaInset(edge: .bottom) {
-                if contentViewModel.isDisplayingNativeAd {
-                    NativeAdCard()
-                }
-            }
+            .adBanner(isPresented: $contentViewModel.isDisplayingAdBanner)
         }
         .interstitialAdSheet(isPresented: $contentViewModel.isOpeningInterstitialAd)
         .rewardedAdSheet(isPresented: $contentViewModel.isOpeningRewordedAd) {
@@ -86,4 +76,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .admobContainer()
 }

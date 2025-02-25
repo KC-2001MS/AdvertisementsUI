@@ -34,22 +34,24 @@ public final class RewardedAdManager: NSObject, FullScreenContentDelegate {
                 rewardedAd?.fullScreenContentDelegate = self
             }
         } catch {
-            print("Failed to load rewarded ad with error: \(error.localizedDescription)")
+            print(
+                "Failed to load rewarded ad with error: \(error.localizedDescription)"
+            )
         }
     }
     
     /// Functions for displaying ads
     @MainActor
     public func showAd(completionAction: @autoclosure @escaping () -> Void) {
-      guard let rewardedAd = rewardedAd else {
-        return print("Ad wasn't ready.")
-      }
+        guard let rewardedAd = rewardedAd else {
+            return print("Ad wasn't ready.")
+        }
 
         rewardedAd.present(from: nil) {
-        let reward = rewardedAd.adReward
-        print("Reward amount: \(reward.amount)")
-        completionAction()
-      }
+            let reward = rewardedAd.adReward
+            print("Reward amount: \(reward.amount)")
+            completionAction()
+        }
     }
     
     private func adUnitID(key: String) -> String? {

@@ -49,4 +49,10 @@ extension View {
         self.modifier(InterstitialAdSheetModifier(isPresented: isPresented))
     }
 }
+
+#Preview {
+    Text("Interstitial Ad")
+        .interstitialAdSheet(isPresented: .constant(true))
+        .admobContainer()
+}
 #endif

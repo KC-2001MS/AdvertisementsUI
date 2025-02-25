@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F7A599E42D6E289D00202DBE /* NativeAdSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A599E32D6E289200202DBE /* NativeAdSampleView.swift */; };
 		F7DE8AEE2D679EC4001E427F /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE8AED2D679EBF001E427F /* ContentViewModel.swift */; };
 		F7DE8AFE2D67C647001E427F /* AdMobUI in Frameworks */ = {isa = PBXBuildFile; productRef = F7DE8AFD2D67C647001E427F /* AdMobUI */; };
 		F7FD49CC2D50FC8B00002117 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD49C52D50FC8B00002117 /* Preview Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F7A599E32D6E289200202DBE /* NativeAdSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdSampleView.swift; sourceTree = "<group>"; };
 		F7AC12AA2D50FE6E0008071E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F7DE8AED2D679EBF001E427F /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		F7FD49A92D50FAE800002117 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +80,7 @@
 				F7FD49C72D50FC8B00002117 /* Assets.xcassets */,
 				F7FD49C92D50FC8B00002117 /* Sample.entitlements */,
 				F7FD49CA2D50FC8B00002117 /* SampleApp.swift */,
+				F7A599E32D6E289200202DBE /* NativeAdSampleView.swift */,
 				F7FD49C82D50FC8B00002117 /* ContentView.swift */,
 				F7DE8AED2D679EBF001E427F /* ContentViewModel.swift */,
 			);
@@ -158,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7A599E42D6E289D00202DBE /* NativeAdSampleView.swift in Sources */,
 				F7FD49CE2D50FC8B00002117 /* ContentView.swift in Sources */,
 				F7FD49CF2D50FC8B00002117 /* SampleApp.swift in Sources */,
 				F7DE8AEE2D679EC4001E427F /* ContentViewModel.swift in Sources */,
@@ -223,7 +227,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -278,7 +282,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;

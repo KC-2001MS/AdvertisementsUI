@@ -20,27 +20,25 @@ struct AdBannerModifier: ViewModifier {
     
     @Binding private var isPresented: Bool
     
-    init(isPresented: Binding<Bool>) {
+    let edge: VerticalEdge
+    
+    init(isPresented: Binding<Bool>, edge: VerticalEdge? = nil) {
         self._isPresented = isPresented
+        self.edge = edge ?? .bottom
     }
 
     func body(content: Content) -> some View {
         content
-            .safeAreaInset(edge: .bottom) {
+            .safeAreaInset(
+                edge: adBannerSize?.isOllapsible == true ? (
+                    adBannerSize?.verticalEdge == .top ? .top : .bottom
+                ) : edge
+            ) {
                 if isPresented {
                     AdBannerCard()
-//                        .frame(maxHeight: adBannerSize?.size.size.height ?? .infinity)
+                        .frame(maxHeight: adBannerSize?.size.size.height ?? 250)
                 }
             }
-            .overlay(
-                GeometryReader { geometry in
-                    Color.clear
-                        .onChange(of: geometry.size, initial: true) {
-                            viewSize = geometry.size
-                        }
-                }
-            )
-//            .environment(\.adBannerSize, adBannerSize == nil ? AdBannerSize(width: viewSize.width) : adBannerSize)
     }
 }
 
@@ -53,8 +51,14 @@ extension View {
     /// Modifier to display interstitial ads
     /// - Parameter isPresented: A binding to a Boolean value that determines whether to present the sheet that you create in the modifier’s content closure.
     /// - Returns: View that displays ads when the variable passed to isPresented is true
-    public func adBanner(isPresented: Binding<Bool>) -> some View {
-        self.modifier(AdBannerModifier(isPresented: isPresented))
+    public func adBanner(isPresented: Binding<Bool>, edge: VerticalEdge? = nil) -> some View {
+        self.modifier(AdBannerModifier(isPresented: isPresented, edge: edge))
+    }
+    
+    public func adBanner(_  hiden: Bool, edge: VerticalEdge? = nil) -> some View {
+        self.modifier(
+            AdBannerModifier(isPresented: .constant(!hiden), edge: edge)
+        )
     }
 }
 #endif

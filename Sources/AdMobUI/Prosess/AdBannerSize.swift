@@ -7,6 +7,7 @@
 
 #if canImport(GoogleMobileAds)
 import GoogleMobileAds
+import SwiftUICore
 
 @available(iOS 17.0, *)
 @available(macOS, unavailable)
@@ -16,42 +17,62 @@ import GoogleMobileAds
 public struct AdBannerSize: Sendable {
     var size: AdSize
     
-    var alignment: AdBannerAlignment?
+    var verticalEdge: VerticalEdge
     
-    init(size: AdSize, alignment: AdBannerAlignment? = nil) {
+    var isOllapsible: Bool
+    
+    init(size: AdSize, edge: VerticalEdge? = nil, isOllapsible: Bool = false) {
         self.size = size
-        self.alignment = alignment
+        self.verticalEdge = edge ?? .bottom
+        self.isOllapsible = isOllapsible
     }
     
     init(width: CGFloat) {
         self.size = currentOrientationAnchoredAdaptiveBanner(width: width)
-        self.alignment = nil
+        self.verticalEdge = .bottom
+        self.isOllapsible = false
     }
     
     public static let fixedBanner: AdBannerSize = .init(size: AdSizeBanner)
     
-    public static let fixedLargeBanner: AdBannerSize = .init(size: AdSizeLargeBanner)
+    public static let fixedLargeBanner: AdBannerSize = .init(
+        size: AdSizeLargeBanner
+    )
     
-    public static let fixedIABMediumRectangle: AdBannerSize = .init(size: AdSizeMediumRectangle)
+    public static let fixedIABMediumRectangle: AdBannerSize = .init(
+        size: AdSizeMediumRectangle
+    )
     
-    public static let fixedIABFullSizeBanner: AdBannerSize = .init(size: AdSizeFullBanner)
+    public static let fixedIABFullSizeBanner: AdBannerSize = .init(
+        size: AdSizeFullBanner
+    )
     
-    public static let fixedIABLeaderboard: AdBannerSize = .init(size: AdSizeLeaderboard)
+    public static let fixedIABLeaderboard: AdBannerSize = .init(
+        size: AdSizeLeaderboard
+    )
     
     public static func smart(width: CGFloat) -> AdBannerSize {
-        return .init(size: currentOrientationAnchoredAdaptiveBanner(width: width))
+        return .init(
+            size: currentOrientationAnchoredAdaptiveBanner(width: width)
+        )
     }
     
     public static func inlineAdaptive(width: CGFloat) -> AdBannerSize {
         return .init(size: currentOrientationInlineAdaptiveBanner(width: width))
     }
     
-    public static func ollapsible(width: CGFloat, alignment: AdBannerAlignment) -> AdBannerSize {
-        return .init(size: currentOrientationAnchoredAdaptiveBanner(width: width), alignment: alignment)
+    public static func ollapsible(width: CGFloat, edge: VerticalEdge) -> AdBannerSize {
+        return .init(
+            size: currentOrientationAnchoredAdaptiveBanner(width: width),
+            edge: edge,
+            isOllapsible: true
+        )
     }
     
     public static func custom(width: CGFloat, height: CGFloat) -> AdBannerSize {
-        return .init(size: adSizeFor(cgSize: CGSize(width: width, height: height)))
+        return .init(
+            size: adSizeFor(cgSize: CGSize(width: width, height: height))
+        )
     }
 }
 #endif

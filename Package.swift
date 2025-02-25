@@ -30,6 +30,9 @@ let package = Package(
                     name: "GoogleMobileAds",
                     package: "swift-package-manager-google-mobile-ads"
                 )
+            ],
+            linkerSettings: [
+                .unsafeFlags(["-ObjC"])
             ]
         ),
 //        .target(

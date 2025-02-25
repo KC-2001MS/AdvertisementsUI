@@ -33,7 +33,8 @@ struct RewardedAdSheetModifier: ViewModifier {
             .task(id: isPresented) {
                 await rewardedAdManager.loadAd()
                 if isPresented {
-                    rewardedAdManager.showAd(completionAction: completionAction())
+                    rewardedAdManager
+                        .showAd(completionAction: completionAction())
                 }
             }
             .onDisappear {
@@ -57,7 +58,20 @@ extension View {
         isPresented: Binding<Bool>,
         completionAction: @escaping () -> Void
     ) -> some View {
-        self.modifier(RewardedAdSheetModifier(isPresented: isPresented, completionAction: completionAction))
+        self.modifier(
+            RewardedAdSheetModifier(
+                isPresented: isPresented,
+                completionAction: completionAction
+            )
+        )
     }
+}
+
+#Preview {
+    Text("Rewarded Ad")
+        .rewardedAdSheet(isPresented: .constant(true)) {
+            
+        }
+        .admobContainer()
 }
 #endif

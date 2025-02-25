@@ -10,16 +10,16 @@
 import SwiftUI
 
 /// Class to control the display of native ads
-@available(iOS 17.0, *)
+@available(iOS, introduced: 17.0, message: "It is currently incomplete and not recommended for use.")
 @available(macOS, unavailable)
 @available(visionOS, unavailable)
 @available(watchOS, unavailable)
 @available(tvOS, unavailable)
 @Observable
-final class NativeAdManager: NSObject,  @preconcurrency NativeAdLoaderDelegate {
+final class NativeAdManager: NSObject, @preconcurrency NativeAdLoaderDelegate {
     var nativeAd: NativeAd?
     var adLoader: AdLoader?
-
+    
     var key: String
     
     init(key: String? = nil) {
@@ -36,9 +36,18 @@ final class NativeAdManager: NSObject,  @preconcurrency NativeAdLoaderDelegate {
                 adTypes: [.native],
                 options: nil
             )
-            adLoader?.delegate = self
-            adLoader?.load(request)
         }
+        else {
+            adLoader = AdLoader(
+                adUnitID: "ca-app-pub-3940256099942544/3986624511",
+                rootViewController: nil,
+                adTypes: [.native],
+                options: nil
+            )
+        }
+        
+        adLoader?.delegate = self
+        adLoader?.load(request)
     }
 
     @MainActor
@@ -62,73 +71,52 @@ final class NativeAdManager: NSObject,  @preconcurrency NativeAdLoaderDelegate {
 }
 
 /// View to display native ads
-@available(iOS 17.0, *)
+@available(iOS, introduced: 17.0, message: "It is currently incomplete and not recommended for use.")
 @available(macOS, unavailable)
 @available(visionOS, unavailable)
 @available(watchOS, unavailable)
 @available(tvOS, unavailable)
-public struct NativeAdCard: View {
+public struct NativeAdCard<Style: NativeAdStyle>: View {
     @State private var nativeAdManager: NativeAdManager
     
-    public init(key: String? = nil) {
+    var key: String?
+    
+    var style: Style
+
+    public init(key: String? = nil) where Style == DefaultNativeAdStyle {
+        self.key = key
+        self.style = DefaultNativeAdStyle()
+        self.nativeAdManager = NativeAdManager(key: key)
+    }
+    
+    init(key: String? = nil, style: Style) {
+        self.style = style
         self.nativeAdManager = NativeAdManager(key: key)
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .center, spacing: 8) {
-                Image(
-                    uiImage: nativeAdManager.nativeAd?.icon?.image ?? UIImage()
+        style
+            .makeBody(
+                configuration: NativeAdStyleConfiguration(
+                    nativeAd: nativeAdManager.nativeAd
                 )
-                .resizable()
-                .frame(width: 50, height: 50)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                
-                Text(nativeAdManager.nativeAd?.headline ?? "")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .lineLimit(2)
+            )
+            .alignmentGuide(.listRowSeparatorLeading) { _ in  0 }
+            .task {
+                nativeAdManager.loadAd()
             }
-
-            Text(nativeAdManager.nativeAd?.advertiser ?? "")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .frame(maxWidth: .infinity)
-            
-            Group {
-                if let callToAction = nativeAdManager.nativeAd?.callToAction {
-                    Button {
-                    } label: {
-                        Text(callToAction)
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .foregroundStyle(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                    }
-                } else {
-                    Spacer()
-                }
-            }
-            .frame(height: 50)
-        }
-        .padding(20)
-        .frame(maxWidth: .infinity)
-        .task {
-            nativeAdManager.loadAd()
-        }
-        .overlay {
-            if nativeAdManager.nativeAd == nil {
-                ProgressView()
-                    .frame(
-                        maxWidth: .infinity,
-                        maxHeight: .infinity,
-                        alignment: .center
-                    )
-            }
-        }
-        .background(Color(.systemBackground))
     }
+}
+
+@available(iOS, introduced: 17.0, message: "It is currently incomplete and not recommended for use.")
+extension NativeAdCard {
+    public func nativeAdStyle<S>(_ style: S) -> some View where S: NativeAdStyle {
+        return NativeAdCard<S>(key: key, style: style)
+    }
+}
+
+#Preview {
+    NativeAdCard()
+        .admobContainer()
 }
 #endif
